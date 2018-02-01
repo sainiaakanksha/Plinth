@@ -71,6 +71,18 @@ def update_configuration(request, old_status, new_status):
             actions.superuser_run(
                 'snapshot',
                 ['configure', 'TIMELINE_CREATE={}'.format(enable_timeline)])
+            actions.superuser_run(
+                'snapshot',
+                ['configure', 'TIMELINE_LIMIT_HOURLY=10'])
+            actions.superuser_run(
+                'snapshot',
+                ['configure', 'TIMELINE_LIMIT_MONTHLY=2'])
+            actions.superuser_run(
+                'snapshot',
+                ['configure', 'TIMELINE_LIMIT_DAILY=3'])
+            actions.superuser_run(
+                'snapshot',
+                ['configure', 'TIMELINE_LIMIT_YEARLY=0'])
             messages.success(request,
                              _('Timeline Snapshots configuration updated'))
     except ActionError as exception:
